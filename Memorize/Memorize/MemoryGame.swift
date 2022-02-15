@@ -7,6 +7,10 @@
 
 import Foundation
 
+import SwiftUI
+
+
+
 struct MemoryGame<CardContent> where CardContent: Equatable {
     private(set) var cards: Array<Card>
     
@@ -20,6 +24,8 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
         
     }
+    
+    
     
     mutating func choose(card: Card) {
         if let chosenIndex = cards.firstIndex(where: { $0.id == card.id}),
@@ -42,14 +48,15 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
     }
     
-    
-    init(numberofPairsOfCards: Int, createCardContent: (Int) -> CardContent){
+    //
+    init(numberofPairsOfCards: Int, cardColor: Color, createCardContent: (Int) -> CardContent){
         cards = []
         // add numberOfpairsOfCards x 2 cards to cards array
         for pairIndex in 0..<numberofPairsOfCards {
             let content: CardContent = createCardContent(pairIndex)
-            cards.append(Card(content: content, id: pairIndex * 2))
-            cards.append(Card(content: content, id: pairIndex * 2 + 1))
+            
+            cards.append(Card(content: content, id: pairIndex * 2, color: cardColor))
+            cards.append(Card(content: content, id: pairIndex * 2 + 1, color: cardColor))
 
         }
     }
@@ -59,6 +66,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         var isMatched: Bool = false
         let content: CardContent
         let id: Int
+        let color: Color
     }
     
 }

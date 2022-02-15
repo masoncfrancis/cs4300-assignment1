@@ -12,6 +12,7 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var game: EmojiMemoryGame
         
     var body: some View {
+        
         VStack {
             ScrollView {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
@@ -21,18 +22,24 @@ struct EmojiMemoryGameView: View {
                             .onTapGesture {
                                 game.choose(card)
                             }
+                            .foregroundColor(card.color)
                     }
                 }
             }
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+            Button(action: {
+                // this is where I got stuck
+            }, label: {
                 Text("New Game")
             }).foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
         }
-            .foregroundColor(.red)
             .padding(.horizontal)
         
         
     }
+    
+    
+    
+    
 }
 
 struct CardView: View{
